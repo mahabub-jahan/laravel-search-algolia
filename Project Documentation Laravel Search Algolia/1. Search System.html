@@ -1,0 +1,54 @@
+Documentation Web Link:
+- https://laravel.com/docs/5.5/scout
+- Tutorial: https://www.youtube.com/watch?v=fNOru8F9H-M&index=3&list=PLe30vg_FG4OR3b24WlxeTWsj7Z2wOtYrH
+
+
+
+Step 1:
+- First, install Scout and Algolia’s API client via composer
+	# composer require laravel/scout
+	# composer require algolia/algoliasearch-client-php
+
+- Go to config/app.php and Enabling scout
+	# Laravel\Scout\ScoutServiceProvider::class,
+
+
+- Configuring scout. Finally, you will need to publish the configuration file. This command will create a scout.php configuration file in your config directory.	
+	# php artisan vendor:publish --provider="Laravel\Scout\ScoutServiceProvider"
+
+
+
+
+Step 2:
+- Then go to User.php model and add. Configuring Model Indexes
+	# use Searchable
+	public function searchableAs()
+    {
+        return 'name';
+    }
+
+
+- Then go to config/scout.php and add 
+	# 'algolia' => [
+        'id' => env('ALGOLIA_APP_ID', 'QTGUJGTM73'),
+        'secret' => env('ALGOLIA_SECRET', '5d6c58c94124924ba826da78c299c61f'),
+    ],
+
+    Note: this id is "Application ID" & secret is "Admin API Key" in the website https://www.algolia.com/apps/QTGUJGTM73/api-keys
+
+
+Step 3:
+
+-Driver Prerequisites
+Algolia
+When using the Algolia driver, you should configure your Algolia id and secret credentials in your config/scout.php configuration file. Once your credentials have been configured, you will also need to install the Algolia PHP SDK via the Composer package manager:
+
+	# composer require algolia/algoliasearch-client-php    
+
+	Note: When we run this command. That time when we register new user it will go and add to my web algolia website.
+
+
+	
+
+
+

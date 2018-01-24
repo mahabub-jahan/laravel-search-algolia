@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// Fetch Data by Search Form
+Route::get('/search/{searchKey}', 'HomeController@search');

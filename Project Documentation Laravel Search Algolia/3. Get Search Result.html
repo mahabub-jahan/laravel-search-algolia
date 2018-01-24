@@ -1,0 +1,32 @@
+Step 1:
+- Create search.blade.php
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+@foreach ($users as $user)
+    {{ $user->name }} <br>
+@endforeach
+</body>
+</html>
+
+Step 2:
+- In Web.php
+// Fetch Data by Search Form
+Route::get('/search/{searchKey}', 'HomeController@search');
+
+
+Step 3:
+- HomeController.php
+
+
+    public function search($searchKey) {
+        $users = User::search($searchKey)->get();
+        return view('search', compact('users'));
+    }
